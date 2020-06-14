@@ -35,22 +35,51 @@
 		"shift": {"legend": "Shift", "css": "keyoff", "keycode": 16},
 	};
 
+	const naginata = {
+		"a": ["j"],
+		"i": ["k"],
+		"u": ["l"],
+		"e": ["o"],
+		"o": ["m", "shift"],
+		"ka": ["f"],
+		"ki": ["w"],
+		"ku": ["h"],
+		"ke": ["x"],
+		"ko": ["v"],
+		"sa": ["u", "shift"],
+		"si": ["r"],
+		"su": ["i"],
+		"se": ["a"],
+		"so": ["b"],
+	};
+
+	var buffer = "";
+
 	function handleType(evt) {
 		var kc = evt.which;
 
-		if (kc == 16) {
-			keys["shift"].css = "keyon";
-		} else {
-			for (var k in keys) {
-				keys[k].css = "keyoff";
-			}
-			for (var k in keys) {
-				if (keys[k].keycode == kc) {
-					keys[k].css = "keyon";
-					break;
-				}
+		for (var k in keys) {
+			if (keys[k].keycode == kc) {
+				buffer += k;
+				console.log(buffer);
+				break;
 			}
 		}
+
+		for (var k in keys) {
+			keys[k].css = "keyoff";
+		}
+		for (var n in naginata) {
+			if (n == buffer) {
+				for (var k of naginata[n]) {
+					keys[k].css = "keyon";
+				}
+				buffer = "";
+				break;
+			}
+		}
+
+		if (buffer.length > 4) buffer = "";
 	}
 
 </script>
