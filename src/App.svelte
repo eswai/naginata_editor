@@ -215,22 +215,44 @@
 	};
 
 	var buffer = "";
+	var lbuffer = "";
+
+	function keyoff() {
+		for (var k in keys) {
+			keys[k].css = "keyoff";
+		}
+	}
+
+	function seachKey(buf, n) {
+		if (buf.length >= n) {
+		　var bufn = buf.substr(-n+1)
+			// console.log(bufn);
+			for (var n in naginata) {
+				if (n == bufn) {
+					keyoff();
+					for (var k of naginata[n]) {
+						keys[k].css = "keyon";
+					}
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 
 	function handleType(evt) {
 		var kc = evt.which;
-				console.log(kc);
 
 		for (var k in keys) {
 			if (keys[k].keycode == kc) {
 				buffer += k;
-				console.log(buffer);
+				lbuffer += k;
+				console.log([buffer, lbuffer]);
 				break;
 			}
 		}
 
-		for (var k in keys) {
-			keys[k].css = "keyoff";
-		}
+		keyoff();
 
 		if (kc == 8) { // backspace
 			buffer = "";
@@ -256,7 +278,12 @@
 			}
 		}
 
+		seachKey(lbuffer, 4);
+		seachKey(lbuffer, 5);
+		seachKey(lbuffer, 6);
+		
 		if (buffer.length > 4) buffer = "";
+		lbuffer = lbuffer.substr(-10);
 	}
 
 </script>
