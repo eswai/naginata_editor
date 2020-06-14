@@ -2,38 +2,38 @@
 	export let text;
 
 	export let keys = {
-		"q": {"legend": "Q", "css": "keyoff", "keycode": 81},
-		"w": {"legend": "W", "css": "keyoff", "keycode": 87},
-		"e": {"legend": "E", "css": "keyoff", "keycode": 69},
-		"r": {"legend": "R", "css": "keyoff", "keycode": 82},
-		"t": {"legend": "T", "css": "keyoff", "keycode": 84},
-		"y": {"legend": "Y", "css": "keyoff", "keycode": 89},
-		"u": {"legend": "U", "css": "keyoff", "keycode": 85},
-		"i": {"legend": "I", "css": "keyoff", "keycode": 73},
-		"o": {"legend": "O", "css": "keyoff", "keycode": 79},
-		"p": {"legend": "P", "css": "keyoff", "keycode": 80},
-		"a": {"legend": "A", "css": "keyoff", "keycode": 65},
-		"s": {"legend": "S", "css": "keyoff", "keycode": 83},
-		"d": {"legend": "D", "css": "keyoff", "keycode": 68},
-		"f": {"legend": "F", "css": "keyoff", "keycode": 70},
-		"g": {"legend": "G", "css": "keyoff", "keycode": 71},
-		"h": {"legend": "H", "css": "keyoff", "keycode": 72},
-		"j": {"legend": "J", "css": "keyoff", "keycode": 74},
-		"k": {"legend": "K", "css": "keyoff", "keycode": 75},
-		"l": {"legend": "L", "css": "keyoff", "keycode": 76},
-		";": {"legend": ";", "css": "keyoff", "keycode": 187},
-		"z": {"legend": "Z", "css": "keyoff", "keycode": 90},
-		"x": {"legend": "X", "css": "keyoff", "keycode": 88},
-		"c": {"legend": "C", "css": "keyoff", "keycode": 67},
-		"v": {"legend": "V", "css": "keyoff", "keycode": 86},
-		"b": {"legend": "B", "css": "keyoff", "keycode": 66},
-		"m": {"legend": "M", "css": "keyoff", "keycode": 77},
-		"n": {"legend": "N", "css": "keyoff", "keycode": 78},
-		",": {"legend": ",", "css": "keyoff", "keycode": 188},
-		".": {"legend": ".", "css": "keyoff", "keycode": 190},
-		"/": {"legend": "/", "css": "keyoff", "keycode": 191},
-		"shift": {"legend": "Shift", "css": "keyoff", "keycode": 16},
-		"-": {"legend": "-", "css": "keyoff", "keycode": 173},
+		"q": {"legend": "Q", "css": "keyoff"},
+		"w": {"legend": "W", "css": "keyoff"},
+		"e": {"legend": "E", "css": "keyoff"},
+		"r": {"legend": "R", "css": "keyoff"},
+		"t": {"legend": "T", "css": "keyoff"},
+		"y": {"legend": "Y", "css": "keyoff"},
+		"u": {"legend": "U", "css": "keyoff"},
+		"i": {"legend": "I", "css": "keyoff"},
+		"o": {"legend": "O", "css": "keyoff"},
+		"p": {"legend": "P", "css": "keyoff"},
+		"a": {"legend": "A", "css": "keyoff"},
+		"s": {"legend": "S", "css": "keyoff"},
+		"d": {"legend": "D", "css": "keyoff"},
+		"f": {"legend": "F", "css": "keyoff"},
+		"g": {"legend": "G", "css": "keyoff"},
+		"h": {"legend": "H", "css": "keyoff"},
+		"j": {"legend": "J", "css": "keyoff"},
+		"k": {"legend": "K", "css": "keyoff"},
+		"l": {"legend": "L", "css": "keyoff"},
+		";": {"legend": ";", "css": "keyoff"},
+		"z": {"legend": "Z", "css": "keyoff"},
+		"x": {"legend": "X", "css": "keyoff"},
+		"c": {"legend": "C", "css": "keyoff"},
+		"v": {"legend": "V", "css": "keyoff"},
+		"b": {"legend": "B", "css": "keyoff"},
+		"m": {"legend": "M", "css": "keyoff"},
+		"n": {"legend": "N", "css": "keyoff"},
+		",": {"legend": ",", "css": "keyoff"},
+		".": {"legend": ".", "css": "keyoff"},
+		"/": {"legend": "/", "css": "keyoff"},
+		"shift": {"legend": "Shift", "css": "keyoff"},
+		"-": {"legend": "-", "css": "keyoff"},
 	};
 
 	const naginata = {
@@ -214,8 +214,8 @@
 		","     : ["v", "shift"     ],
 	};
 
-	var buffer = "";
-	var lbuffer = "";
+	var buffer = [];
+	var lbuffer = [];
 
 	function keyoff() {
 		for (var k in keys) {
@@ -225,10 +225,10 @@
 
 	function seachKey(buf, n) {
 		if (buf.length >= n) {
-		　var bufn = buf.substr(-n+1)
-			// console.log(bufn);
+		　var bufn = buf.slice(buf.length - n);
+			console.log(bufn.join(""));
 			for (var n in naginata) {
-				if (n == bufn) {
+				if (n == bufn.join("")) {
 					keyoff();
 					for (var k of naginata[n]) {
 						keys[k].css = "keyon";
@@ -241,49 +241,45 @@
 	}
 
 	function handleType(evt) {
-		var kc = evt.which;
+		var kc = evt.key;
+		console.log(kc);
 
-		for (var k in keys) {
-			if (keys[k].keycode == kc) {
-				buffer += k;
-				lbuffer += k;
-				console.log([buffer, lbuffer]);
-				break;
-			}
-		}
+		buffer.push(kc);
+		lbuffer.push(kc);
+		console.log([buffer, lbuffer]);
 
 		keyoff();
 
-		if (kc == 8) { // backspace
-			buffer = "";
+		if (kc == "Backspace") {
+			buffer = [];
 			keys["u"].css = "keyon";
 		}
-		if (kc == 13) { // enter
-			buffer = "";
+		if (kc == "Enter") {
+			buffer = [];
 			keys["v"].css = "keyon";
 			keys["m"].css = "keyon";
 		}
-		if (kc == 32) { // space
-			buffer = "";
+		if (kc == " ") {
+			buffer = [];
 			keys["shift"].css = "keyon";
 		}
 
 		for (var n in naginata) {
-			if (n == buffer) {
+			if (n == buffer.join("")) {
 				for (var k of naginata[n]) {
 					keys[k].css = "keyon";
 				}
-				buffer = "";
+				buffer = [];
 				break;
 			}
 		}
 
+		seachKey(lbuffer, 3);
 		seachKey(lbuffer, 4);
 		seachKey(lbuffer, 5);
-		seachKey(lbuffer, 6);
 		
-		if (buffer.length > 4) buffer = "";
-		lbuffer = lbuffer.substr(-10);
+		if (buffer.length > 4) buffer = [];
+		if (lbuffer.length > 10) lbuffer = lbuffer.slice(1);
 	}
 
 </script>
