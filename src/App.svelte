@@ -398,7 +398,7 @@
 		width: 80%; 
 		height: 100px; 
 		font-size: 20px;
-		margin-bottom: 100px;
+		margin-bottom: 10px;
 	}
 
 	@media (min-width: 640px) {
