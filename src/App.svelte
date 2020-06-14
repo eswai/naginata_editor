@@ -36,21 +36,193 @@
 	};
 
 	const naginata = {
-		"a": ["j"],
-		"i": ["k"],
-		"u": ["l"],
-		"e": ["o"],
-		"o": ["m", "shift"],
-		"ka": ["f"],
-		"ki": ["w"],
-		"ku": ["h"],
-		"ke": ["x"],
-		"ko": ["v"],
-		"sa": ["u", "shift"],
-		"si": ["r"],
-		"su": ["i"],
-		"se": ["a"],
-		"so": ["b"],
+
+// 清音
+		"a"     : ["j"              ], // あ
+		"i"     : ["k"              ], // い
+		"u"     : ["l"              ], // う
+		"e"     : ["shift", "o"     ], // え
+		"o"     : ["shift", "n"     ], // お
+		"ka"    : ["f"              ], // か
+		"ki"    : ["w"              ], // き
+		"ku"    : ["h"              ], // く
+		"ke"    : ["x"              ], // け
+		"ke"    : ["shift", "x"     ], // け
+		"ko"    : ["v"              ], // こ
+		"sa"    : ["shift", "u"     ], // さ
+		"si"    : ["r"              ], // し
+		"su"    : ["o"              ], // す
+		"se"    : ["shift", "a"     ], // せ
+		"so"    : ["b"              ], // そ
+		"ta"    : ["n"              ], // た
+		"ti"    : ["shift", "g"     ], // ち
+		"tu"    : ["shift", ";"     ], // つ
+		"te"    : ["e"              ], // て
+		"to"    : ["d"              ], // と
+		"na"    : ["m"              ], // な
+		"ni"    : ["shift", "d"     ], // に
+		"nu"    : ["shift", "s"     ], // ぬ
+		"ne"    : ["shift", "w"     ], // ね
+		"no"    : ["shift", "j"     ], // の
+		"ha"    : ["c"              ], // は
+		"hi"    : ["s"              ], // ひ
+		"hu"    : ["shift", "."     ], // ふ
+		"he"    : ["p"              ], // へ
+		"ho"    : ["z"              ], // ほ
+		"ho"    : ["shift", "z"     ], // ほ
+		"ma"    : ["shift", "f"     ], // ま
+		"mi"    : ["shift", "b"     ], // み
+		"mu"    : ["shift", ","     ], // む
+		"me"    : ["shift", "r"     ], // め
+		"mo"    : ["shift", "k"     ], // も
+		"ya"    : ["shift", "h"     ], // や
+		"yu"    : ["shift", "p"     ], // ゆ
+		"yo"    : ["shift", "i"     ], // よ
+		"ra"    : ["."              ], // ら
+		"ri"    : ["shift", "e"     ], // り
+		"ru"    : ["i"              ], // る
+		"re"    : ["/"              ], // れ
+		"re"    : ["shift", "/"     ], // れ
+		"ro"    : ["a"              ], // ろ
+		"wa"    : ["shift", "l"     ], // わ
+		"wo"    : ["shift", "c"     ], // を
+		"nn"    : [","              ], // ん
+		"-"     : [";"              ], // ー
+
+			// 濁音
+		"ga"    : ["j", "f"         ], // が
+		"gi"    : ["j", "w"         ], // ぎ
+		"gu"    : ["f", "h"         ], // ぐ
+		"ge"    : ["j", "x"         ], // げ
+		"go"    : ["j", "v"         ], // ご
+		"za"    : ["f", "u"         ], // ざ
+		"zi"    : ["j", "r"         ], // じ
+		"zu"    : ["f", "o"         ], // ず
+		"ze"    : ["j", "a"         ], // ぜ
+		"zo"    : ["j", "b"         ], // ぞ
+		"da"    : ["f", "n"         ], // だ
+		"di"    : ["j", "g"         ], // ぢ
+		"du"    : ["f", ";"         ], // づ
+		"de"    : ["j", "e"         ], // で
+		"do"    : ["j", "d"         ], // ど
+		"ba"    : ["j", "c"         ], // ば
+		"bi"    : ["j", "s"         ], // び
+		"bu"    : ["f", "."         ], // ぶ
+		"be"    : ["f", "p"         ], // べ
+		"bo"    : ["j", "z"         ], // ぼ
+		"vu"    : ["f", "l"         ], // ゔ
+
+			// 半濁音
+		"pa"    : ["m", "c"         ], // ぱ
+		"pi"    : ["m", "s"         ], // ぴ
+		"pu"    : ["v", "."         ], // ぷ
+		"pe"    : ["v", "p"         ], // ぺ
+		"po"    : ["m", "z"         ], // ぽ
+
+			// 清音拗音 濁音拗音 半濁拗音
+		"sye"   : ["r", "o"         ], // しぇ
+		"sya"   : ["r", "h"         ], // しゃ
+		"syu"   : ["r", "p"         ], // しゅ
+		"syo"   : ["r", "i"         ], // しょ
+		"je"    : ["j", "r", "o"    ], // じぇ
+		"ja"    : ["j", "r", "h"    ], // じゃ
+		"ju"    : ["j", "r", "p"    ], // じゅ
+		"jo"    : ["j", "r", "i"    ], // じょ
+		"kya"   : ["w", "h"         ], // きゃ
+		"kyu"   : ["w", "p"         ], // きゅ
+		"kyo"   : ["w", "i"         ], // きょ
+		"gya"   : ["j", "w", "h"    ], // ぎゃ
+		"gyu"   : ["j", "w", "p"    ], // ぎゅ
+		"gyo"   : ["j", "w", "i"    ], // ぎょ
+		"che"   : ["g", "o"         ], // ちぇ
+		"cha"   : ["g", "h"         ], // ちゃ
+		"chu"   : ["g", "p"         ], // ちゅ
+		"cho"   : ["g", "i"         ], // ちょ
+		"dye"   : ["j", "g", "o"    ], // ぢぇ
+		"dya"   : ["j", "g", "h"    ], // ぢゃ
+		"dyu"   : ["j", "g", "p"    ], // ぢゅ
+		"dyo"   : ["j", "g", "i"    ], // ぢょ
+		"nya"   : ["d", "h"         ], // にゃ
+		"nyu"   : ["d", "p"         ], // にゅ
+		"nyo"   : ["d", "i"         ], // にょ
+		"hya"   : ["s", "h"         ], // ひゃ
+		"hyu"   : ["s", "p"         ], // ひゅ
+		"hyo"   : ["s", "i"         ], // ひょ
+		"bya"   : ["j", "s", "h"    ], // びゃ
+		"byu"   : ["j", "s", "p"    ], // びゅ
+		"byo"   : ["j", "s", "i"    ], // びょ
+		"pya"   : ["m", "s", "h"    ], // ぴゃ
+		"pyu"   : ["m", "s", "p"    ], // ぴゅ
+		"pyo"   : ["m", "s", "i"    ], // ぴょ
+		"mya"   : ["b", "h"         ], // みゃ
+		"myu"   : ["b", "p"         ], // みゅ
+		"myo"   : ["b", "i"         ], // みょ
+		"rya"   : ["e", "h"         ], // りゃ
+		"ryu"   : ["e", "p"         ], // りゅ
+		"ryo"   : ["e", "i"         ], // りょ
+
+			// 清音外来音 濁音外来音
+		"texi"  : ["m", "e", "k"    ], // てぃ
+		"texyu" : ["m", "e", "p"    ], // てゅ
+		"dexi"  : ["j", "e", "k"    ], // でぃ
+		"dexyu" : ["j", "e", "p"    ], // でゅ
+		"toxu"  : ["m", "d", "l"    ], // とぅ
+		"doxu"  : ["j", "d", "l"    ], // どぅ
+		"sixe"  : ["m", "r", "o"    ], // しぇ
+		"tixe"  : ["m", "g", "o"    ], // ちぇ
+		"jixe"  : ["j", "r", "o"    ], // じぇ
+		"dixe"  : ["j", "g", "o"    ], // ぢぇ
+		"fa"    : ["v", ".", "j"    ], // ふぁ
+		"fi"    : ["v", ".", "k"    ], // ふぃ
+		"fe"    : ["v", ".", "o"    ], // ふぇ
+		"fo"    : ["v", ".", "n"    ], // ふぉ
+		"fyu"   : ["v", ".", "p"    ], // ふゅ
+		"uxi"   : ["v", "l", "k"    ], // うぃ
+		"uxe"   : ["v", "l", "o"    ], // うぇ
+		"uxo"   : ["v", "l", "n"    ], // うぉ
+		"va"    : ["f", "l", "j"    ], // ゔぁ
+		"vi"    : ["f", "l", "k"    ], // ゔぃ
+		"ve"    : ["f", "l", "o"    ], // ゔぇ
+		"vo"    : ["f", "l", "n"    ], // ゔぉ
+		"vuxyu" : ["f", "l", "p"    ], // ゔゅ
+		"kuxa"  : ["v", "h", "j"    ], // くぁ
+		"kuxi"  : ["v", "h", "k"    ], // くぃ
+		"kuxe"  : ["v", "h", "o"    ], // くぇ
+		"kuxo"  : ["v", "h", "n"    ], // くぉ
+		"kuxwa" : ["v", "h", "l"    ], // くゎ
+		"guxa"  : ["f", "h", "j"    ], // ぐぁ
+		"guxi"  : ["f", "h", "k"    ], // ぐぃ
+		"guxe"  : ["f", "h", "o"    ], // ぐぇ
+		"guxo"  : ["f", "h", "n"    ], // ぐぉ
+		"guxwa" : ["f", "h", "l"    ], // ぐゎ
+		"tuxa"  : ["v", ";", "j"    ], // つぁ
+		"tuxi"  : ["v", ";", "k"    ], // つぃ
+		"tuxe"  : ["v", ";", "o"    ], // つぇ
+		"tuxo"  : ["v", ";", "n"    ], // つぉ
+
+			// 小書き
+		"xya"   : ["q", "h"         ], // ゃ
+		"xya"   : ["q", "shift", "h"], // ゃ
+		"xyu"   : ["q", "p"         ], // ゅ
+		"xyu"   : ["q", "shift", "p"], // ゅ
+		"xyo"   : ["q", "i"         ], // ょ
+		"xyo"   : ["q", "shift", "i"], // ょ
+		"xa"    : ["q", "j"         ], // ぁ
+		"xa"    : ["q", "shift", "j"], // ぁ
+		"xi"    : ["q", "k"         ], // ぃ
+		"xi"    : ["q", "shift", "k"], // ぃ
+		"xu"    : ["q", "l"         ], // ぅ
+		"xu"    : ["q", "shift", "l"], // ぅ
+		"xe"    : ["q", "o"         ], // ぇ
+		"xe"    : ["q", "shift", "o"], // ぇ
+		"xo"    : ["q", "n"         ], // ぉ
+		"xo"    : ["q", "shift", "n"], // ぉ
+		"xwa"   : ["q", "l"         ], // ゎ
+		"xwa"   : ["q", "shift", "l"], // ゎ
+		"xtu"   : ["g"              ], // っ
+
+		"."     : ["m", "shift"     ],
+		","     : ["v", "shift"     ],
 	};
 
 	var buffer = "";
@@ -69,6 +241,21 @@
 		for (var k in keys) {
 			keys[k].css = "keyoff";
 		}
+
+		if (kc == 8) { // backspace
+			buffer = "";
+			keys["u"].css = "keyon";
+		}
+		if (kc == 13) { // enter
+			buffer = "";
+			keys["v"].css = "keyon";
+			keys["m"].css = "keyon";
+		}
+		if (kc == 32) { // space
+			buffer = "";
+			keys["shift"].css = "keyon";
+		}
+
 		for (var n in naginata) {
 			if (n == buffer) {
 				for (var k of naginata[n]) {
@@ -120,8 +307,8 @@
 		<div class="key1u {keys["c"].css}">{keys["c"].legend}</div>
 		<div class="key1u {keys["v"].css}">{keys["v"].legend}</div>
 		<div class="key1u {keys["b"].css}">{keys["b"].legend}</div>
-		<div class="key1u {keys["m"].css}">{keys["m"].legend}</div>
 		<div class="key1u {keys["n"].css}">{keys["n"].legend}</div>
+		<div class="key1u {keys["m"].css}">{keys["m"].legend}</div>
 		<div class="key1u {keys[","].css}">{keys[","].legend}</div>
 		<div class="key1u {keys["."].css}">{keys["."].legend}</div>
 		<div class="key1u {keys["/"].css}">{keys["/"].legend}</div>
@@ -153,7 +340,7 @@
 		height:40px;
 		width:40px;
 		background-color:#ffffff;
-		border:1px solid #838383;
+		border:1px solid #bebebe;
 		border-radius:4px;
 	}
 
@@ -163,7 +350,7 @@
 		height:40px;
 		width:178px;
 		background-color:#ffffff;
-		border:1px solid #838383;
+		border:1px solid #bebebe;
 		border-radius:4px;
 	}
 
