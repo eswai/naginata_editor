@@ -1,5 +1,5 @@
 <script>
-	export let name;
+	export let text;
 
 	export let keys = {
 		"q": {"legend": "Q", "css": "key1u"},
@@ -38,13 +38,16 @@
 		for (var k in keys) {
 			keys[k].css = "key1u";
 		}
-		keys[name[name.length-1]].css = "key1ut"
+		var k = text[text.length-1];
+		if (k in keys) {
+			keys[k].css = "key1ut"
+		}
 	}
 </script>
 
 <main>
-	<input bind:value={name} on:input={handleType}>
-	<p>Type {name}</p>
+	<input bind:value={text} on:input={handleType}>
+	<p>Type {text}</p>
 	
 	<div class="row">
 		<div class="{keys["q"]["css"]}">{keys["q"]["legend"]}</div>
