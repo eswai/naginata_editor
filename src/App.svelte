@@ -52,42 +52,42 @@
 	<p>Type {text}</p>
 	
 	<div class="row">
-		<div class="{keys["q"]["css"]}">{keys["q"]["legend"]}</div>
-		<div class="{keys["w"]["css"]}">{keys["w"]["legend"]}</div>
-		<div class="{keys["e"]["css"]}">{keys["e"]["legend"]}</div>
-		<div class="{keys["r"]["css"]}">{keys["r"]["legend"]}</div>
-		<div class="{keys["t"]["css"]}">{keys["t"]["legend"]}</div>
-		<div class="{keys["y"]["css"]}">{keys["y"]["legend"]}</div>
-		<div class="{keys["u"]["css"]}">{keys["u"]["legend"]}</div>
-		<div class="{keys["i"]["css"]}">{keys["i"]["legend"]}</div>
-		<div class="{keys["o"]["css"]}">{keys["o"]["legend"]}</div>
-		<div class="{keys["p"]["css"]}">{keys["p"]["legend"]}</div>
+		<div class="{keys["q"].css}">{keys["q"].legend}</div>
+		<div class="{keys["w"].css}">{keys["w"].legend}</div>
+		<div class="{keys["e"].css}">{keys["e"].legend}</div>
+		<div class="{keys["r"].css}">{keys["r"].legend}</div>
+		<div class="{keys["t"].css}">{keys["t"].legend}</div>
+		<div class="{keys["y"].css}">{keys["y"].legend}</div>
+		<div class="{keys["u"].css}">{keys["u"].legend}</div>
+		<div class="{keys["i"].css}">{keys["i"].legend}</div>
+		<div class="{keys["o"].css}">{keys["o"].legend}</div>
+		<div class="{keys["p"].css}">{keys["p"].legend}</div>
 	</div>
 
 	<div class="row">
-		<div class="{keys["a"]["css"]}">{keys["a"]["legend"]}</div>
-		<div class="{keys["s"]["css"]}">{keys["s"]["legend"]}</div>
-		<div class="{keys["d"]["css"]}">{keys["d"]["legend"]}</div>
-		<div class="{keys["f"]["css"]}">{keys["f"]["legend"]}</div>
-		<div class="{keys["g"]["css"]}">{keys["g"]["legend"]}</div>
-		<div class="{keys["h"]["css"]}">{keys["h"]["legend"]}</div>
-		<div class="{keys["j"]["css"]}">{keys["j"]["legend"]}</div>
-		<div class="{keys["k"]["css"]}">{keys["k"]["legend"]}</div>
-		<div class="{keys["l"]["css"]}">{keys["l"]["legend"]}</div>
-		<div class="{keys[";"]["css"]}">{keys[";"]["legend"]}</div>
+		<div class="{keys["a"].css}">{keys["a"].legend}</div>
+		<div class="{keys["s"].css}">{keys["s"].legend}</div>
+		<div class="{keys["d"].css}">{keys["d"].legend}</div>
+		<div class="{keys["f"].css}">{keys["f"].legend}</div>
+		<div class="{keys["g"].css}">{keys["g"].legend}</div>
+		<div class="{keys["h"].css}">{keys["h"].legend}</div>
+		<div class="{keys["j"].css}">{keys["j"].legend}</div>
+		<div class="{keys["k"].css}">{keys["k"].legend}</div>
+		<div class="{keys["l"].css}">{keys["l"].legend}</div>
+		<div class="{keys[";"].css}">{keys[";"].legend}</div>
 	</div>
 
 	<div class="row">
-		<div class="{keys["z"]["css"]}">{keys["z"]["legend"]}</div>
-		<div class="{keys["x"]["css"]}">{keys["x"]["legend"]}</div>
-		<div class="{keys["c"]["css"]}">{keys["c"]["legend"]}</div>
-		<div class="{keys["v"]["css"]}">{keys["v"]["legend"]}</div>
-		<div class="{keys["b"]["css"]}">{keys["b"]["legend"]}</div>
-		<div class="{keys["m"]["css"]}">{keys["m"]["legend"]}</div>
-		<div class="{keys["n"]["css"]}">{keys["n"]["legend"]}</div>
-		<div class="{keys[","]["css"]}">{keys[","]["legend"]}</div>
-		<div class="{keys["."]["css"]}">{keys["."]["legend"]}</div>
-		<div class="{keys["/"]["css"]}">{keys["/"]["legend"]}</div>
+		<div class="{keys["z"].css}">{keys["z"].legend}</div>
+		<div class="{keys["x"].css}">{keys["x"].legend}</div>
+		<div class="{keys["c"].css}">{keys["c"].legend}</div>
+		<div class="{keys["v"].css}">{keys["v"].legend}</div>
+		<div class="{keys["b"].css}">{keys["b"].legend}</div>
+		<div class="{keys["m"].css}">{keys["m"].legend}</div>
+		<div class="{keys["n"].css}">{keys["n"].legend}</div>
+		<div class="{keys[","].css}">{keys[","].legend}</div>
+		<div class="{keys["."].css}">{keys["."].legend}</div>
+		<div class="{keys["/"].css}">{keys["/"].legend}</div>
 	</div>
 
 	<div class="row">
