@@ -33,6 +33,7 @@
 		".": {"legend": ".", "css": "keyoff", "keycode": 190},
 		"/": {"legend": "/", "css": "keyoff", "keycode": 191},
 		"shift": {"legend": "Shift", "css": "keyoff", "keycode": 16},
+		"-": {"legend": "-", "css": "keyoff", "keycode": 173},
 	};
 
 	const naginata = {
@@ -47,7 +48,6 @@
 		"ki"    : ["w"              ], // き
 		"ku"    : ["h"              ], // く
 		"ke"    : ["x"              ], // け
-		"ke"    : ["shift", "x"     ], // け
 		"ko"    : ["v"              ], // こ
 		"sa"    : ["shift", "u"     ], // さ
 		"si"    : ["r"              ], // し
@@ -69,7 +69,6 @@
 		"hu"    : ["shift", "."     ], // ふ
 		"he"    : ["p"              ], // へ
 		"ho"    : ["z"              ], // ほ
-		"ho"    : ["shift", "z"     ], // ほ
 		"ma"    : ["shift", "f"     ], // ま
 		"mi"    : ["shift", "b"     ], // み
 		"mu"    : ["shift", ","     ], // む
@@ -82,7 +81,6 @@
 		"ri"    : ["shift", "e"     ], // り
 		"ru"    : ["i"              ], // る
 		"re"    : ["/"              ], // れ
-		"re"    : ["shift", "/"     ], // れ
 		"ro"    : ["a"              ], // ろ
 		"wa"    : ["shift", "l"     ], // わ
 		"wo"    : ["shift", "c"     ], // を
@@ -202,23 +200,14 @@
 
 			// 小書き
 		"xya"   : ["q", "h"         ], // ゃ
-		"xya"   : ["q", "shift", "h"], // ゃ
 		"xyu"   : ["q", "p"         ], // ゅ
-		"xyu"   : ["q", "shift", "p"], // ゅ
 		"xyo"   : ["q", "i"         ], // ょ
-		"xyo"   : ["q", "shift", "i"], // ょ
 		"xa"    : ["q", "j"         ], // ぁ
-		"xa"    : ["q", "shift", "j"], // ぁ
 		"xi"    : ["q", "k"         ], // ぃ
-		"xi"    : ["q", "shift", "k"], // ぃ
 		"xu"    : ["q", "l"         ], // ぅ
-		"xu"    : ["q", "shift", "l"], // ぅ
 		"xe"    : ["q", "o"         ], // ぇ
-		"xe"    : ["q", "shift", "o"], // ぇ
 		"xo"    : ["q", "n"         ], // ぉ
-		"xo"    : ["q", "shift", "n"], // ぉ
 		"xwa"   : ["q", "l"         ], // ゎ
-		"xwa"   : ["q", "shift", "l"], // ゎ
 		"xtu"   : ["g"              ], // っ
 
 		"."     : ["m", "shift"     ],
@@ -229,6 +218,7 @@
 
 	function handleType(evt) {
 		var kc = evt.which;
+				console.log(kc);
 
 		for (var k in keys) {
 			if (keys[k].keycode == kc) {
@@ -272,66 +262,70 @@
 </script>
 
 <main>
+	<h1>薙刀式を可視化するエディター</h1>
 	<textarea bind:value={text} on:keyup={handleType}></textarea>
-	<p>Type {text}</p>
 	
-	<div class="row">
-		<div class="key1u {keys["q"].css}">{keys["q"].legend}</div>
-		<div class="key1u {keys["w"].css}">{keys["w"].legend}</div>
-		<div class="key1u {keys["e"].css}">{keys["e"].legend}</div>
-		<div class="key1u {keys["r"].css}">{keys["r"].legend}</div>
-		<div class="key1u {keys["t"].css}">{keys["t"].legend}</div>
-		<div class="key1u {keys["y"].css}">{keys["y"].legend}</div>
-		<div class="key1u {keys["u"].css}">{keys["u"].legend}</div>
-		<div class="key1u {keys["i"].css}">{keys["i"].legend}</div>
-		<div class="key1u {keys["o"].css}">{keys["o"].legend}</div>
-		<div class="key1u {keys["p"].css}">{keys["p"].legend}</div>
-	</div >
+	<div class="keyboard">
+		<div class="row">
+			<div class="key1u {keys["q"].css}">{keys["q"].legend}</div>
+			<div class="key1u {keys["w"].css}">{keys["w"].legend}</div>
+			<div class="key1u {keys["e"].css}">{keys["e"].legend}</div>
+			<div class="key1u {keys["r"].css}">{keys["r"].legend}</div>
+			<div class="key1u {keys["t"].css}">{keys["t"].legend}</div>
+			<div class="key1u {keys["y"].css}">{keys["y"].legend}</div>
+			<div class="key1u {keys["u"].css}">{keys["u"].legend}</div>
+			<div class="key1u {keys["i"].css}">{keys["i"].legend}</div>
+			<div class="key1u {keys["o"].css}">{keys["o"].legend}</div>
+			<div class="key1u {keys["p"].css}">{keys["p"].legend}</div>
+		</div >
 
-	<div class="row">
-		<div class="key1u {keys["a"].css}">{keys["a"].legend}</div>
-		<div class="key1u {keys["s"].css}">{keys["s"].legend}</div>
-		<div class="key1u {keys["d"].css}">{keys["d"].legend}</div>
-		<div class="key1u {keys["f"].css}">{keys["f"].legend}</div>
-		<div class="key1u {keys["g"].css}">{keys["g"].legend}</div>
-		<div class="key1u {keys["h"].css}">{keys["h"].legend}</div>
-		<div class="key1u {keys["j"].css}">{keys["j"].legend}</div>
-		<div class="key1u {keys["k"].css}">{keys["k"].legend}</div>
-		<div class="key1u {keys["l"].css}">{keys["l"].legend}</div>
-		<div class="key1u {keys[";"].css}">{keys[";"].legend}</div>
-	</div >
+		<div class="row">
+			<div class="key1u {keys["a"].css}">{keys["a"].legend}</div>
+			<div class="key1u {keys["s"].css}">{keys["s"].legend}</div>
+			<div class="key1u {keys["d"].css}">{keys["d"].legend}</div>
+			<div class="key1u {keys["f"].css}">{keys["f"].legend}</div>
+			<div class="key1u {keys["g"].css}">{keys["g"].legend}</div>
+			<div class="key1u {keys["h"].css}">{keys["h"].legend}</div>
+			<div class="key1u {keys["j"].css}">{keys["j"].legend}</div>
+			<div class="key1u {keys["k"].css}">{keys["k"].legend}</div>
+			<div class="key1u {keys["l"].css}">{keys["l"].legend}</div>
+			<div class="key1u {keys[";"].css}">{keys[";"].legend}</div>
+		</div >
 
-	<div class="row">
-		<div class="key1u {keys["z"].css}">{keys["z"].legend}</div>
-		<div class="key1u {keys["x"].css}">{keys["x"].legend}</div>
-		<div class="key1u {keys["c"].css}">{keys["c"].legend}</div>
-		<div class="key1u {keys["v"].css}">{keys["v"].legend}</div>
-		<div class="key1u {keys["b"].css}">{keys["b"].legend}</div>
-		<div class="key1u {keys["n"].css}">{keys["n"].legend}</div>
-		<div class="key1u {keys["m"].css}">{keys["m"].legend}</div>
-		<div class="key1u {keys[","].css}">{keys[","].legend}</div>
-		<div class="key1u {keys["."].css}">{keys["."].legend}</div>
-		<div class="key1u {keys["/"].css}">{keys["/"].legend}</div>
-	</div >
+		<div class="row">
+			<div class="key1u {keys["z"].css}">{keys["z"].legend}</div>
+			<div class="key1u {keys["x"].css}">{keys["x"].legend}</div>
+			<div class="key1u {keys["c"].css}">{keys["c"].legend}</div>
+			<div class="key1u {keys["v"].css}">{keys["v"].legend}</div>
+			<div class="key1u {keys["b"].css}">{keys["b"].legend}</div>
+			<div class="key1u {keys["n"].css}">{keys["n"].legend}</div>
+			<div class="key1u {keys["m"].css}">{keys["m"].legend}</div>
+			<div class="key1u {keys[","].css}">{keys[","].legend}</div>
+			<div class="key1u {keys["."].css}">{keys["."].legend}</div>
+			<div class="key1u {keys["/"].css}">{keys["/"].legend}</div>
+		</div >
 
-	<div class="row">
-		<div class="key1u"></div>
-		<div class="key1u"></div>
-		<div class="key1u"></div>
-		<div class="key4u {keys["shift"].css}">{keys["shift"].legend}</div>
-		<div class="key1u"></div>
-		<div class="key1u"></div>
-		<div class="key1u"></div>
+		<div class="row">
+			<div class="key1u"></div>
+			<div class="key1u"></div>
+			<div class="key1u"></div>
+			<div class="key4u {keys["shift"].css}">{keys["shift"].legend}</div>
+			<div class="key1u"></div>
+			<div class="key1u"></div>
+			<div class="key1u"></div>
+		</div>
 	</div>
 
 </main>
 
 <style>
 	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
 		margin: 0 auto;
+	}
+
+	.keyboard {
+    margin: auto;
+		text-align: center;
 	}
 
 	.key1u {
@@ -367,17 +361,22 @@
 	}
 
 	h1 {
-		color: #ff3e00;
+		color: #008f18;
 		text-transform: uppercase;
-		font-size: 4em;
+		font-size: 30px;
 		font-weight: 100;
 	}
 
-	textarea { width: 80%; height: 100px; }
+	textarea {
+		width: 80%; 
+		height: 100px; 
+		font-size: 20px;
+		margin-bottom: 100px;
+	}
 
 	@media (min-width: 640px) {
 		main {
-			max-width: 1024px;
+			max-width: 800px;
 		}
 	}
 </style>
