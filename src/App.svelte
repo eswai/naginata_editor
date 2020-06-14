@@ -272,7 +272,7 @@
 </script>
 
 <main>
-	<input bind:value={text} on:keyup={handleType}>
+	<textarea bind:value={text} on:keyup={handleType}></textarea>
 	<p>Type {text}</p>
 	
 	<div class="row">
@@ -373,9 +373,11 @@
 		font-weight: 100;
 	}
 
+	textarea { width: 80%; height: 100px; }
+
 	@media (min-width: 640px) {
 		main {
-			max-width: none;
+			max-width: 1024px;
 		}
 	}
 </style>
