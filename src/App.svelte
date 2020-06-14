@@ -2,99 +2,107 @@
 	export let text;
 
 	export let keys = {
-		"q": {"legend": "Q", "css": "key1u"},
-		"w": {"legend": "W", "css": "key1u"},
-		"e": {"legend": "E", "css": "key1u"},
-		"r": {"legend": "R", "css": "key1u"},
-		"t": {"legend": "T", "css": "key1u"},
-		"y": {"legend": "Y", "css": "key1u"},
-		"u": {"legend": "U", "css": "key1u"},
-		"i": {"legend": "I", "css": "key1u"},
-		"o": {"legend": "O", "css": "key1u"},
-		"p": {"legend": "P", "css": "key1u"},
-		"a": {"legend": "A", "css": "key1u"},
-		"s": {"legend": "S", "css": "key1u"},
-		"d": {"legend": "D", "css": "key1u"},
-		"f": {"legend": "F", "css": "key1u"},
-		"g": {"legend": "G", "css": "key1u"},
-		"h": {"legend": "H", "css": "key1u"},
-		"j": {"legend": "J", "css": "key1u"},
-		"k": {"legend": "K", "css": "key1u"},
-		"l": {"legend": "L", "css": "key1u"},
-		";": {"legend": ";", "css": "key1u"},
-		"z": {"legend": "Z", "css": "key1u"},
-		"x": {"legend": "X", "css": "key1u"},
-		"c": {"legend": "C", "css": "key1u"},
-		"v": {"legend": "V", "css": "key1u"},
-		"b": {"legend": "B", "css": "key1u"},
-		"m": {"legend": "M", "css": "key1u"},
-		"n": {"legend": "N", "css": "key1u"},
-		",": {"legend": ",", "css": "key1u"},
-		".": {"legend": ".", "css": "key1u"},
-		"/": {"legend": "/", "css": "key1u"},
+		"q": {"legend": "Q", "css": "keyoff", "keycode": 81},
+		"w": {"legend": "W", "css": "keyoff", "keycode": 87},
+		"e": {"legend": "E", "css": "keyoff", "keycode": 69},
+		"r": {"legend": "R", "css": "keyoff", "keycode": 82},
+		"t": {"legend": "T", "css": "keyoff", "keycode": 84},
+		"y": {"legend": "Y", "css": "keyoff", "keycode": 89},
+		"u": {"legend": "U", "css": "keyoff", "keycode": 85},
+		"i": {"legend": "I", "css": "keyoff", "keycode": 73},
+		"o": {"legend": "O", "css": "keyoff", "keycode": 79},
+		"p": {"legend": "P", "css": "keyoff", "keycode": 80},
+		"a": {"legend": "A", "css": "keyoff", "keycode": 65},
+		"s": {"legend": "S", "css": "keyoff", "keycode": 83},
+		"d": {"legend": "D", "css": "keyoff", "keycode": 68},
+		"f": {"legend": "F", "css": "keyoff", "keycode": 70},
+		"g": {"legend": "G", "css": "keyoff", "keycode": 71},
+		"h": {"legend": "H", "css": "keyoff", "keycode": 72},
+		"j": {"legend": "J", "css": "keyoff", "keycode": 74},
+		"k": {"legend": "K", "css": "keyoff", "keycode": 75},
+		"l": {"legend": "L", "css": "keyoff", "keycode": 76},
+		";": {"legend": ";", "css": "keyoff", "keycode": 187},
+		"z": {"legend": "Z", "css": "keyoff", "keycode": 90},
+		"x": {"legend": "X", "css": "keyoff", "keycode": 88},
+		"c": {"legend": "C", "css": "keyoff", "keycode": 67},
+		"v": {"legend": "V", "css": "keyoff", "keycode": 86},
+		"b": {"legend": "B", "css": "keyoff", "keycode": 66},
+		"m": {"legend": "M", "css": "keyoff", "keycode": 77},
+		"n": {"legend": "N", "css": "keyoff", "keycode": 78},
+		",": {"legend": ",", "css": "keyoff", "keycode": 188},
+		".": {"legend": ".", "css": "keyoff", "keycode": 190},
+		"/": {"legend": "/", "css": "keyoff", "keycode": 191},
+		"shift": {"legend": "Shift", "css": "keyoff", "keycode": 16},
 	};
 
-	function handleType() {
-		for (var k in keys) {
-			keys[k].css = "key1u";
-		}
-		if (text.length > 0) {
-			var k = text[text.length-1].toLowerCase();
-			if (k in keys) {
-				keys[k].css = "key1ut";
+	function handleType(evt) {
+		var kc = evt.which;
+
+		if (kc == 16) {
+			keys["shift"].css = "keyon";
+		} else {
+			for (var k in keys) {
+				keys[k].css = "keyoff";
+			}
+			for (var k in keys) {
+				if (keys[k].keycode == kc) {
+					keys[k].css = "keyon";
+					break;
+				}
 			}
 		}
 	}
+
 </script>
 
 <main>
-	<input bind:value={text} on:input={handleType}>
+	<input bind:value={text} on:keyup={handleType}>
 	<p>Type {text}</p>
 	
 	<div class="row">
-		<div class="{keys["q"].css}">{keys["q"].legend}</div>
-		<div class="{keys["w"].css}">{keys["w"].legend}</div>
-		<div class="{keys["e"].css}">{keys["e"].legend}</div>
-		<div class="{keys["r"].css}">{keys["r"].legend}</div>
-		<div class="{keys["t"].css}">{keys["t"].legend}</div>
-		<div class="{keys["y"].css}">{keys["y"].legend}</div>
-		<div class="{keys["u"].css}">{keys["u"].legend}</div>
-		<div class="{keys["i"].css}">{keys["i"].legend}</div>
-		<div class="{keys["o"].css}">{keys["o"].legend}</div>
-		<div class="{keys["p"].css}">{keys["p"].legend}</div>
-	</div>
+		<div class="key1u {keys["q"].css}">{keys["q"].legend}</div>
+		<div class="key1u {keys["w"].css}">{keys["w"].legend}</div>
+		<div class="key1u {keys["e"].css}">{keys["e"].legend}</div>
+		<div class="key1u {keys["r"].css}">{keys["r"].legend}</div>
+		<div class="key1u {keys["t"].css}">{keys["t"].legend}</div>
+		<div class="key1u {keys["y"].css}">{keys["y"].legend}</div>
+		<div class="key1u {keys["u"].css}">{keys["u"].legend}</div>
+		<div class="key1u {keys["i"].css}">{keys["i"].legend}</div>
+		<div class="key1u {keys["o"].css}">{keys["o"].legend}</div>
+		<div class="key1u {keys["p"].css}">{keys["p"].legend}</div>
+	</div >
 
 	<div class="row">
-		<div class="{keys["a"].css}">{keys["a"].legend}</div>
-		<div class="{keys["s"].css}">{keys["s"].legend}</div>
-		<div class="{keys["d"].css}">{keys["d"].legend}</div>
-		<div class="{keys["f"].css}">{keys["f"].legend}</div>
-		<div class="{keys["g"].css}">{keys["g"].legend}</div>
-		<div class="{keys["h"].css}">{keys["h"].legend}</div>
-		<div class="{keys["j"].css}">{keys["j"].legend}</div>
-		<div class="{keys["k"].css}">{keys["k"].legend}</div>
-		<div class="{keys["l"].css}">{keys["l"].legend}</div>
-		<div class="{keys[";"].css}">{keys[";"].legend}</div>
-	</div>
+		<div class="key1u {keys["a"].css}">{keys["a"].legend}</div>
+		<div class="key1u {keys["s"].css}">{keys["s"].legend}</div>
+		<div class="key1u {keys["d"].css}">{keys["d"].legend}</div>
+		<div class="key1u {keys["f"].css}">{keys["f"].legend}</div>
+		<div class="key1u {keys["g"].css}">{keys["g"].legend}</div>
+		<div class="key1u {keys["h"].css}">{keys["h"].legend}</div>
+		<div class="key1u {keys["j"].css}">{keys["j"].legend}</div>
+		<div class="key1u {keys["k"].css}">{keys["k"].legend}</div>
+		<div class="key1u {keys["l"].css}">{keys["l"].legend}</div>
+		<div class="key1u {keys[";"].css}">{keys[";"].legend}</div>
+	</div >
 
 	<div class="row">
-		<div class="{keys["z"].css}">{keys["z"].legend}</div>
-		<div class="{keys["x"].css}">{keys["x"].legend}</div>
-		<div class="{keys["c"].css}">{keys["c"].legend}</div>
-		<div class="{keys["v"].css}">{keys["v"].legend}</div>
-		<div class="{keys["b"].css}">{keys["b"].legend}</div>
-		<div class="{keys["m"].css}">{keys["m"].legend}</div>
-		<div class="{keys["n"].css}">{keys["n"].legend}</div>
-		<div class="{keys[","].css}">{keys[","].legend}</div>
-		<div class="{keys["."].css}">{keys["."].legend}</div>
-		<div class="{keys["/"].css}">{keys["/"].legend}</div>
-	</div>
+		<div class="key1u {keys["z"].css}">{keys["z"].legend}</div>
+		<div class="key1u {keys["x"].css}">{keys["x"].legend}</div>
+		<div class="key1u {keys["c"].css}">{keys["c"].legend}</div>
+		<div class="key1u {keys["v"].css}">{keys["v"].legend}</div>
+		<div class="key1u {keys["b"].css}">{keys["b"].legend}</div>
+		<div class="key1u {keys["m"].css}">{keys["m"].legend}</div>
+		<div class="key1u {keys["n"].css}">{keys["n"].legend}</div>
+		<div class="key1u {keys[","].css}">{keys[","].legend}</div>
+		<div class="key1u {keys["."].css}">{keys["."].legend}</div>
+		<div class="key1u {keys["/"].css}">{keys["/"].legend}</div>
+	</div >
 
 	<div class="row">
 		<div class="key1u"></div>
 		<div class="key1u"></div>
 		<div class="key1u"></div>
-		<div class="key2u"></div>
+		<div class="key2u {keys["shift"].css}">{keys["shift"].legend}</div>
 		<div class="key1u"></div>
 		<div class="key1u"></div>
 		<div class="key1u"></div>
@@ -120,16 +128,6 @@
 		border-radius:4px;
 	}
 
-	.key1ut {
-		float: left;
-		margin: 2px;
-		height:40px;
-		width:40px;
-		background-color:#caffbd;
-		border:1px solid #838383;
-		border-radius:4px;
-	}
-
 	.key2u {
 		float: left;
 		margin: 2px;
@@ -138,6 +136,14 @@
 		background-color:#ffffff;
 		border:1px solid #838383;
 		border-radius:4px;
+	}
+
+	.keyon {
+		background-color:#caffbd;
+	}
+
+	.keyoff {
+		background-color:#ffffff;
 	}
 
 	.row {
