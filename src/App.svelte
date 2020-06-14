@@ -102,7 +102,7 @@
 		<div class="key1u"></div>
 		<div class="key1u"></div>
 		<div class="key1u"></div>
-		<div class="key2u {keys["shift"].css}">{keys["shift"].legend}</div>
+		<div class="key4u {keys["shift"].css}">{keys["shift"].legend}</div>
 		<div class="key1u"></div>
 		<div class="key1u"></div>
 		<div class="key1u"></div>
@@ -128,7 +128,7 @@
 		border-radius:4px;
 	}
 
-	.key2u {
+	.key4u {
 		float: left;
 		margin: 2px;
 		height:40px;
