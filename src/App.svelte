@@ -38,9 +38,11 @@
 		for (var k in keys) {
 			keys[k].css = "key1u";
 		}
-		var k = text[text.length-1];
-		if (k in keys) {
-			keys[k].css = "key1ut"
+		if (text.length > 0) {
+			var k = text[text.length-1].toLowerCase();
+			if (k in keys) {
+				keys[k].css = "key1ut";
+			}
 		}
 	}
 </script>
