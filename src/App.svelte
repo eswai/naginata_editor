@@ -1,9 +1,10 @@
 <script>
 	import Keyboard from './Keyboard.svelte';
 
-	let text;
-	let kanatext = "";
+	let text = "";
+	let kanatext = [];
 	let highlight = [];
+	let kanahtml = "";
 
 	const naginata = {
 
@@ -11,48 +12,48 @@
 		"a"     : {"key": ["j"              ],  "kana": "あ"},
 		"i"     : {"key": ["k"              ],  "kana": "い"},
 		"u"     : {"key": ["l"              ],  "kana": "う"},
-		"e"     : {"key": ["shift", "o"     ],  "kana": "え"},
-		"o"     : {"key": ["shift", "n"     ],  "kana": "お"},
+		"e"     : {"key": ["[s]", "o"     ],  "kana": "え"},
+		"o"     : {"key": ["[s]", "n"     ],  "kana": "お"},
 		"ka"    : {"key": ["f"              ],  "kana": "か"},
 		"ki"    : {"key": ["w"              ],  "kana": "き"},
 		"ku"    : {"key": ["h"              ],  "kana": "く"},
 		"ke"    : {"key": ["x"              ],  "kana": "け"},
 		"ko"    : {"key": ["v"              ],  "kana": "こ"},
-		"sa"    : {"key": ["shift", "u"     ],  "kana": "さ"},
+		"sa"    : {"key": ["[s]", "u"     ],  "kana": "さ"},
 		"si"    : {"key": ["r"              ],  "kana": "し"},
 		"su"    : {"key": ["o"              ],  "kana": "す"},
-		"se"    : {"key": ["shift", "a"     ],  "kana": "せ"},
+		"se"    : {"key": ["[s]", "a"     ],  "kana": "せ"},
 		"so"    : {"key": ["b"              ],  "kana": "そ"},
 		"ta"    : {"key": ["n"              ],  "kana": "た"},
-		"ti"    : {"key": ["shift", "g"     ],  "kana": "ち"},
-		"tu"    : {"key": ["shift", ";"     ],  "kana": "つ"},
+		"ti"    : {"key": ["[s]", "g"     ],  "kana": "ち"},
+		"tu"    : {"key": ["[s]", ";"     ],  "kana": "つ"},
 		"te"    : {"key": ["e"              ],  "kana": "て"},
 		"to"    : {"key": ["d"              ],  "kana": "と"},
 		"na"    : {"key": ["m"              ],  "kana": "な"},
-		"ni"    : {"key": ["shift", "d"     ],  "kana": "に"},
-		"nu"    : {"key": ["shift", "s"     ],  "kana": "ぬ"},
-		"ne"    : {"key": ["shift", "w"     ],  "kana": "ね"},
-		"no"    : {"key": ["shift", "j"     ],  "kana": "の"},
+		"ni"    : {"key": ["[s]", "d"     ],  "kana": "に"},
+		"nu"    : {"key": ["[s]", "s"     ],  "kana": "ぬ"},
+		"ne"    : {"key": ["[s]", "w"     ],  "kana": "ね"},
+		"no"    : {"key": ["[s]", "j"     ],  "kana": "の"},
 		"ha"    : {"key": ["c"              ],  "kana": "は"},
 		"hi"    : {"key": ["s"              ],  "kana": "ひ"},
-		"hu"    : {"key": ["shift", "."     ],  "kana": "ふ"},
+		"hu"    : {"key": ["[s]", "."     ],  "kana": "ふ"},
 		"he"    : {"key": ["p"              ],  "kana": "へ"},
 		"ho"    : {"key": ["z"              ],  "kana": "ほ"},
-		"ma"    : {"key": ["shift", "f"     ],  "kana": "ま"},
-		"mi"    : {"key": ["shift", "b"     ],  "kana": "み"},
-		"mu"    : {"key": ["shift", ","     ],  "kana": "む"},
-		"me"    : {"key": ["shift", "r"     ],  "kana": "め"},
-		"mo"    : {"key": ["shift", "k"     ],  "kana": "も"},
-		"ya"    : {"key": ["shift", "h"     ],  "kana": "や"},
-		"yu"    : {"key": ["shift", "p"     ],  "kana": "ゆ"},
-		"yo"    : {"key": ["shift", "i"     ],  "kana": "よ"},
+		"ma"    : {"key": ["[s]", "f"     ],  "kana": "ま"},
+		"mi"    : {"key": ["[s]", "b"     ],  "kana": "み"},
+		"mu"    : {"key": ["[s]", ","     ],  "kana": "む"},
+		"me"    : {"key": ["[s]", "r"     ],  "kana": "め"},
+		"mo"    : {"key": ["[s]", "k"     ],  "kana": "も"},
+		"ya"    : {"key": ["[s]", "h"     ],  "kana": "や"},
+		"yu"    : {"key": ["[s]", "p"     ],  "kana": "ゆ"},
+		"yo"    : {"key": ["[s]", "i"     ],  "kana": "よ"},
 		"ra"    : {"key": ["."              ],  "kana": "ら"},
-		"ri"    : {"key": ["shift", "e"     ],  "kana": "り"},
+		"ri"    : {"key": ["[s]", "e"     ],  "kana": "り"},
 		"ru"    : {"key": ["i"              ],  "kana": "る"},
 		"re"    : {"key": ["/"              ],  "kana": "れ"},
 		"ro"    : {"key": ["a"              ],  "kana": "ろ"},
-		"wa"    : {"key": ["shift", "l"     ],  "kana": "わ"},
-		"wo"    : {"key": ["shift", "c"     ],  "kana": "を"},
+		"wa"    : {"key": ["[s]", "l"     ],  "kana": "わ"},
+		"wo"    : {"key": ["[s]", "c"     ],  "kana": "を"},
 		"nn"    : {"key": [","              ],  "kana": "ん"},
 		"-"     : {"key": [";"              ],  "kana": "ー"},
 
@@ -179,8 +180,8 @@
 		"xwa"   : {"key": ["q", "l"         ], "kana": "ゎ"},
 		"xtu"   : {"key": ["g"              ], "kana": "っ"},
 
-		"."     : {"key": ["m", "shift"     ], "kana": "。"},
-		","     : {"key": ["v", "shift"     ], "kana": "、"},
+		"."     : {"key": ["m", "[s]"     ], "kana": "。"},
+		","     : {"key": ["v", "[s]"     ], "kana": "、"},
 	};
 
 	var buffer = [];
@@ -205,7 +206,7 @@
 
 	function handleType(evt) {
 		var kc = evt.key;
-		console.log(kc);
+		// console.log(kc);
 
 		if (kc.length == 1) {
 			buffer.push(kc);
@@ -219,25 +220,25 @@
 			buffer = [];
 			lbuffer = [];
 			highlight.push("u");
-			kanatext += "BS";
+			kanatext.push(["BS", "U"]);
 		}
 		if (kc == "Enter") {
 			buffer = [];
 			lbuffer = [];
 			highlight.push("v");
 			highlight.push("m");
-			kanatext += "Ent";
+			kanatext.push(["Ent", "VM"]);
 		}
 		if (kc == " ") {
 			buffer = [];
 			lbuffer = [];
-			highlight.push("shift");
-			kanatext += "Sp";
+			highlight.push("[s]");
+			kanatext.push(["Sp", "[S]"]);
 		}
 
 		for (var n in naginata) {
 			if (n == buffer.join("")) {
-				kanatext += naginata[n].kana;
+				kanatext.push([naginata[n].kana, naginata[n].key.join("")]);
 				for (var k of naginata[n].key) {
 					highlight.push(k);
 				}
@@ -252,14 +253,20 @@
 		
 		if (buffer.length > 4) buffer = [];
 		if (lbuffer.length > 10) lbuffer = lbuffer.slice(1);
+
+		kanatext = kanatext.slice(-20);
+		kanahtml = kanatext.map(function(value, index, array) {
+		  return "<rb>" + value[0] + "</rb><rt>" + value[1].toUpperCase() + "</rt>";
+		}).join("");
 	}
+
 
 </script>
 
 <main>
 	<h1>薙刀式を可視化するエディター</h1>
 	<textarea bind:value={text} on:keyup={handleType}></textarea>
-	<p>{kanatext}</p>
+	<p class="kana" ><ruby>{@html kanahtml}</ruby></p>
 	
 	<Keyboard highlight={highlight} />
 
@@ -282,6 +289,10 @@
 		height: 100px; 
 		font-size: 20px;
 		margin-bottom: 10px;
+	}
+
+	.kana {
+		font-size: 30px;
 	}
 
 	@media (min-width: 640px) {

@@ -33,16 +33,16 @@
     ",": {"legend": ",", "css": "keyoff"},
     ".": {"legend": ".", "css": "keyoff"},
     "/": {"legend": "/", "css": "keyoff"},
-    "shift": {"legend": "Shift", "css": "keyoff"},
+    "[s]": {"legend": "Shift", "css": "keyoff"},
     "-": {"legend": "-", "css": "keyoff"},
   };
 
   $: update(highlight);
 
   function update(hl) {
-    console.log(hl);
+    // console.log(hl);
     for (let ki in keys) {
-      console.log([ki, hl]);
+      // console.log([ki, hl]);
       if (hl.includes(ki)) {
         keys[ki].css = "keyon";
       } else {
@@ -139,7 +139,7 @@
     <div class="key1u"></div>
     <div class="key1u"></div>
     <div class="key1u"></div>
-    <div class="key4u {keys["shift"].css}">{keys["shift"].legend}</div>
+    <div class="key4u {keys["[s]"].css}">{keys["[s]"].legend}</div>
     <div class="key1u"></div>
     <div class="key1u"></div>
     <div class="key1u"></div>
