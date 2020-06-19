@@ -194,6 +194,8 @@
 			for (var n in naginata) {
 				if (n == bufn.join("")) {
 					highlight = [];
+					kanatext = kanatext.slice(0, kanatext.length - 2);
+					kanatext.push([naginata[n].kana, naginata[n].key]);
 					for (var k of naginata[n].key) {
 						highlight.push(k);
 					}
@@ -223,11 +225,13 @@
 			kanatext.push(["←", ["U"]]);
 		}
 		if (kc == "Enter") {
+			if (lbuffer[lbuffer.length-1] != ".") {
+				highlight.push("v");
+				highlight.push("m");
+				kanatext.push(["⤶", ["V", "M"]]);
+			}
 			buffer = [];
 			lbuffer = [];
-			highlight.push("v");
-			highlight.push("m");
-			kanatext.push(["⤶", ["V", "M"]]);
 		}
 		if (kc == " ") {
 			buffer = [];
@@ -247,9 +251,11 @@
 			}
 		}
 
-		seachKey(lbuffer, 3);
-		seachKey(lbuffer, 4);
-		seachKey(lbuffer, 5);
+		if (!seachKey(lbuffer, 5)) {
+			if (!seachKey(lbuffer, 4)) {
+				seachKey(lbuffer, 3)
+			}
+		}
 		
 		buffer = buffer.slice(-4);
 		lbuffer = lbuffer.slice(-10);
