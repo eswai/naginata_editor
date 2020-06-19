@@ -220,25 +220,25 @@
 			buffer = [];
 			lbuffer = [];
 			highlight.push("u");
-			kanatext.push(["BS", "U"]);
+			kanatext.push(["BS", ["U"]]);
 		}
 		if (kc == "Enter") {
 			buffer = [];
 			lbuffer = [];
 			highlight.push("v");
 			highlight.push("m");
-			kanatext.push(["Ent", "VM"]);
+			kanatext.push(["Ent", ["V", "M"]]);
 		}
 		if (kc == " ") {
 			buffer = [];
 			lbuffer = [];
 			highlight.push("[s]");
-			kanatext.push(["Sp", "[S]"]);
+			kanatext.push(["Sp", ["[S]"]]);
 		}
 
 		for (var n in naginata) {
 			if (n == buffer.join("")) {
-				kanatext.push([naginata[n].kana, naginata[n].key.join("")]);
+				kanatext.push([naginata[n].kana, naginata[n].key]);
 				for (var k of naginata[n].key) {
 					highlight.push(k);
 				}
@@ -256,17 +256,19 @@
 
 		kanatext = kanatext.slice(-20);
 		kanahtml = kanatext.map(function(value, index, array) {
-		  return "<rb>" + value[0] + "</rb><rt>" + value[1].toUpperCase() + "</rt>";
+			let a = "<div>" + value[0] + "</div>";
+			let b = value[1].map(function(v2, i2, a2) {
+				return "<div class='key'>" + v2.toUpperCase() + "</div>";
+			}).join("");
+		  return "<div class='tate'>" + a + b + "</div>";
 		}).join("");
 	}
-
-
 </script>
 
 <main>
 	<h1>薙刀式を可視化するエディター</h1>
 	<textarea bind:value={text} on:keyup={handleType}></textarea>
-	<p class="kana" ><ruby>{@html kanahtml}</ruby></p>
+	<p class="kana" >{@html kanahtml}</p>
 	
 	<Keyboard highlight={highlight} />
 
@@ -292,11 +294,20 @@
 	}
 
 	.kana {
-		font-size: 30px;
+		font-size: 20px;
+		display: flex;
+		align-items: baseline;
 	}
 
 	.tate {
-		writing-mode: tb-rl;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.key {
+		font-size: 20px;
+		border:1px solid #bebebe;
+    border-radius:4px;
 	}
 
 	@media (min-width: 640px) {
