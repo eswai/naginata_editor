@@ -220,20 +220,20 @@
 			buffer = [];
 			lbuffer = [];
 			highlight.push("u");
-			kanatext.push(["BS", ["U"]]);
+			kanatext.push(["←", ["U"]]);
 		}
 		if (kc == "Enter") {
 			buffer = [];
 			lbuffer = [];
 			highlight.push("v");
 			highlight.push("m");
-			kanatext.push(["Ent", ["V", "M"]]);
+			kanatext.push(["⤶", ["V", "M"]]);
 		}
 		if (kc == " ") {
 			buffer = [];
 			lbuffer = [];
 			highlight.push("[s]");
-			kanatext.push(["Sp", ["[S]"]]);
+			kanatext.push(["□", ["[S]"]]);
 		}
 
 		for (var n in naginata) {
