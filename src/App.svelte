@@ -180,8 +180,8 @@
 		"xwa"   : {"key": ["q", "l"         ], "kana": "ゎ"},
 		"xtu"   : {"key": ["g"              ], "kana": "っ"},
 
-		"."     : {"key": ["m", "[s]"       ], "kana": "。"},
-		","     : {"key": ["v", "[s]"       ], "kana": "、"},
+		"."     : {"key": ["[s]", "m"       ], "kana": "。"},
+		","     : {"key": ["[s]", "v"       ], "kana": "、"},
 	};
 
 	var buffer = [];
@@ -251,8 +251,8 @@
 		seachKey(lbuffer, 4);
 		seachKey(lbuffer, 5);
 		
-		if (buffer.length > 4) buffer = [];
-		if (lbuffer.length > 10) lbuffer = lbuffer.slice(1);
+		buffer = buffer.slice(-4);
+		lbuffer = lbuffer.slice(-10);
 
 		kanatext = kanatext.slice(-20);
 
@@ -262,10 +262,10 @@
 <main>
 	<h1>薙刀式を可視化するエディター</h1>
 	<textarea bind:value={text} on:keyup={handleType}></textarea>
-	<p class="kana" >
+	<p class="stream" >
 		{#each kanatext as [kana, keys]}
 			<div class='tate'>
-				<div>{kana}</div>
+				<div class="kana">{kana}</div>
 				{#each keys as k}
 					<div class='key'>{k.toUpperCase()}</div>
 				{/each}
@@ -296,10 +296,14 @@
 		margin-bottom: 10px;
 	}
 
-	.kana {
+	.stream {
 		font-size: 25px;
 		display: flex;
 		align-items: baseline;
+	}
+
+	.kana {
+		height: 40px;
 	}
 
 	.tate {
