@@ -255,20 +255,23 @@
 		if (lbuffer.length > 10) lbuffer = lbuffer.slice(1);
 
 		kanatext = kanatext.slice(-20);
-		kanahtml = kanatext.map(function(value, index, array) {
-			let a = "<div>" + value[0] + "</div>";
-			let b = value[1].map(function(v2, i2, a2) {
-				return "<div class='key'>" + v2.toUpperCase() + "</div>";
-			}).join("");
-		  return "<div class='tate'>" + a + b + "</div>";
-		}).join("");
+
 	}
 </script>
 
 <main>
 	<h1>薙刀式を可視化するエディター</h1>
 	<textarea bind:value={text} on:keyup={handleType}></textarea>
-	<p class="kana" >{@html kanahtml}</p>
+	<p class="kana" >
+		{#each kanatext as [kana, keys]}
+			<div class='tate'>
+				<div>{kana}</div>
+				{#each keys as k}
+					<div class='key'>{k.toUpperCase()}</div>
+				{/each}
+			</div>
+		{/each}
+	</p>
 	
 	<Keyboard highlight={highlight} />
 
@@ -294,7 +297,7 @@
 	}
 
 	.kana {
-		font-size: 20px;
+		font-size: 25px;
 		display: flex;
 		align-items: baseline;
 	}
@@ -305,9 +308,13 @@
 	}
 
 	.key {
-		font-size: 20px;
+		font-size: 15px;
 		border:1px solid #bebebe;
-    border-radius:4px;
+    	border-radius:4px;
+    	text-align: center;
+    	width: 25px;
+    	height: 25px;
+    	margin: 2px;
 	}
 
 	@media (min-width: 640px) {
