@@ -217,16 +217,16 @@
 		}
 		// console.log([buffer, lbuffer]);
 
-		highlight = [];
-
 		if (kc == "Backspace") {
 			buffer = [];
 			lbuffer = [];
+			highlight = [];
 			highlight.push("u");
 			kanatext.push(["←", ["U"]]);
 		}
 		if (kc == "Enter") {
 			if (lbuffer[lbuffer.length-1] != ".") {
+				highlight = [];
 				highlight.push("v");
 				highlight.push("m");
 				kanatext.push(["⤶", ["V", "M"]]);
@@ -237,6 +237,7 @@
 		if (kc == " ") {
 			buffer = [];
 			lbuffer = [];
+			highlight = [];
 			highlight.push("[s]");
 			kanatext.push(["□", ["[S]"]]);
 		}
@@ -246,6 +247,7 @@
 				if (!seachKey(lbuffer, 3)) {
 					for (var n in naginata) {
 						if (n == buffer.join("")) {
+							highlight = [];
 							kanatext.push([naginata[n].kana, naginata[n].key]);
 							for (var k of naginata[n].key) {
 								highlight.push(k);
