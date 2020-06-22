@@ -270,7 +270,7 @@
 </script>
 
 <main>
-	<h1>薙刀式を可視化するエディター</h1>
+	<h1>薙刀式を可視化する</h1>
 	<textarea bind:value={text} on:keyup={handleType}></textarea>
 	<p class="stream" >
 		{#each kanatext as [kana, keys]}
@@ -284,6 +284,13 @@
 	</p>
 	
 	<Keyboard highlight={highlight} />
+
+	<div class="note">
+		<ul>
+			<li>Windowsの新しいIMEでは日本語入力中にキー入力をブラウザが取得できないため、以前のバージョンのMicrosoft IMEを使う、にオプションを設定しないと動作しません。</li>
+			<li>ブラウザの種類、OSによっては正常に動作しません。Linux+Mozc+Firefox、MacOS+Firefox、Windows+以前のIME+Firefoxなどで動作を確認済みです。</li>
+		</ul>
+	</div>
 
 </main>
 
@@ -329,6 +336,13 @@
     	width: 25px;
     	height: 25px;
     	margin: 2px;
+	}
+
+	.note {
+		padding: 5px;
+		margin: 30px;
+		font-size: 8pt;
+		background-color: rgb(241, 241, 241);
 	}
 
 	@media (min-width: 640px) {
