@@ -339,6 +339,7 @@
 	}
 
 	.note {
+		width: 70%;
 		padding: 5px;
 		margin: 30px;
 		font-size: 8pt;
