@@ -1,40 +1,40 @@
 <script>
-
+  import Key from './Key.svelte';
   export let highlight = [];
 
   let keys = {
-    "q": {"legend": "Q", "css": "keyoff"},
-    "w": {"legend": "W", "css": "keyoff"},
-    "e": {"legend": "E", "css": "keyoff"},
-    "r": {"legend": "R", "css": "keyoff"},
-    "t": {"legend": "T", "css": "keyoff"},
-    "y": {"legend": "Y", "css": "keyoff"},
-    "u": {"legend": "U", "css": "keyoff"},
-    "i": {"legend": "I", "css": "keyoff"},
-    "o": {"legend": "O", "css": "keyoff"},
-    "p": {"legend": "P", "css": "keyoff"},
-    "a": {"legend": "A", "css": "keyoff"},
-    "s": {"legend": "S", "css": "keyoff"},
-    "d": {"legend": "D", "css": "keyoff"},
-    "f": {"legend": "F", "css": "keyoff"},
-    "g": {"legend": "G", "css": "keyoff"},
-    "h": {"legend": "H", "css": "keyoff"},
-    "j": {"legend": "J", "css": "keyoff"},
-    "k": {"legend": "K", "css": "keyoff"},
-    "l": {"legend": "L", "css": "keyoff"},
-    ";": {"legend": ";", "css": "keyoff"},
-    "z": {"legend": "Z", "css": "keyoff"},
-    "x": {"legend": "X", "css": "keyoff"},
-    "c": {"legend": "C", "css": "keyoff"},
-    "v": {"legend": "V", "css": "keyoff"},
-    "b": {"legend": "B", "css": "keyoff"},
-    "m": {"legend": "M", "css": "keyoff"},
-    "n": {"legend": "N", "css": "keyoff"},
-    ",": {"legend": ",", "css": "keyoff"},
-    ".": {"legend": ".", "css": "keyoff"},
-    "/": {"legend": "/", "css": "keyoff"},
-    "[s]": {"legend": "Shift", "css": "keyoff"},
-    "-": {"legend": "-", "css": "keyoff"},
+    "q": {"legend": ["Q"], "press": false},
+    "w": {"legend": ["W"], "press": false},
+    "e": {"legend": ["E"], "press": false},
+    "r": {"legend": ["R"], "press": false},
+    "t": {"legend": ["T"], "press": false},
+    "y": {"legend": ["Y"], "press": false},
+    "u": {"legend": ["U"], "press": false},
+    "i": {"legend": ["I"], "press": false},
+    "o": {"legend": ["O"], "press": false},
+    "p": {"legend": ["P"], "press": false},
+    "a": {"legend": ["A"], "press": false},
+    "s": {"legend": ["S"], "press": false},
+    "d": {"legend": ["D"], "press": false},
+    "f": {"legend": ["F"], "press": false},
+    "g": {"legend": ["G"], "press": false},
+    "h": {"legend": ["H"], "press": false},
+    "j": {"legend": ["J"], "press": false},
+    "k": {"legend": ["K"], "press": false},
+    "l": {"legend": ["L"], "press": false},
+    ";": {"legend": [";"], "press": false},
+    "z": {"legend": ["Z"], "press": false},
+    "x": {"legend": ["X"], "press": false},
+    "c": {"legend": ["C"], "press": false},
+    "v": {"legend": ["V"], "press": false},
+    "b": {"legend": ["B"], "press": false},
+    "m": {"legend": ["M"], "press": false},
+    "n": {"legend": ["N"], "press": false},
+    ",": {"legend": [","], "press": false},
+    ".": {"legend": ["."], "press": false},
+    "/": {"legend": ["/"], "press": false},
+    "[s]": {"legend": ["Shift"], "press": false},
+    "-": {"legend": ["-"], "press": false},
   };
 
   $: update(highlight);
@@ -44,9 +44,9 @@
     for (let ki in keys) {
       // console.log([ki, hl]);
       if (hl.includes(ki)) {
-        keys[ki].css = "keyon";
+        keys[ki].press = true;
       } else {
-        keys[ki].css = "keyoff";
+        keys[ki].press = false;
       }
     }
   }
@@ -60,34 +60,6 @@
     text-align: center;
   }
 
-  .key1u {
-    float: left;
-    margin: 2px;
-    height:40px;
-    width:40px;
-    background-color:#ffffff;
-    border:1px solid #bebebe;
-    border-radius:4px;
-  }
-
-  .key4u {
-    float: left;
-    margin: 2px;
-    height:40px;
-    width:178px;
-    background-color:#ffffff;
-    border:1px solid #bebebe;
-    border-radius:4px;
-  }
-
-  .keyon {
-    background-color:#caffbd;
-  }
-
-  .keyoff {
-    background-color:#ffffff;
-  }
-
   .row {
     display: flex;
   }
@@ -97,52 +69,52 @@
 
 <div class="keyboard">
   <div class="row">
-    <div class="key1u {keys["q"].css}">{keys["q"].legend}</div>
-    <div class="key1u {keys["w"].css}">{keys["w"].legend}</div>
-    <div class="key1u {keys["e"].css}">{keys["e"].legend}</div>
-    <div class="key1u {keys["r"].css}">{keys["r"].legend}</div>
-    <div class="key1u {keys["t"].css}">{keys["t"].legend}</div>
-    <div class="key1u {keys["y"].css}">{keys["y"].legend}</div>
-    <div class="key1u {keys["u"].css}">{keys["u"].legend}</div>
-    <div class="key1u {keys["i"].css}">{keys["i"].legend}</div>
-    <div class="key1u {keys["o"].css}">{keys["o"].legend}</div>
-    <div class="key1u {keys["p"].css}">{keys["p"].legend}</div>
+    <Key press={keys["q"].press} legend={keys["q"].legend} />
+    <Key press={keys["w"].press} legend={keys["w"].legend} />
+    <Key press={keys["e"].press} legend={keys["e"].legend} />
+    <Key press={keys["r"].press} legend={keys["r"].legend} />
+    <Key press={keys["t"].press} legend={keys["t"].legend} />
+    <Key press={keys["y"].press} legend={keys["y"].legend} />
+    <Key press={keys["u"].press} legend={keys["u"].legend} />
+    <Key press={keys["i"].press} legend={keys["i"].legend} />
+    <Key press={keys["o"].press} legend={keys["o"].legend} />
+    <Key press={keys["p"].press} legend={keys["p"].legend} />
   </div >
 
   <div class="row">
-    <div class="key1u {keys["a"].css}">{keys["a"].legend}</div>
-    <div class="key1u {keys["s"].css}">{keys["s"].legend}</div>
-    <div class="key1u {keys["d"].css}">{keys["d"].legend}</div>
-    <div class="key1u {keys["f"].css}">{keys["f"].legend}</div>
-    <div class="key1u {keys["g"].css}">{keys["g"].legend}</div>
-    <div class="key1u {keys["h"].css}">{keys["h"].legend}</div>
-    <div class="key1u {keys["j"].css}">{keys["j"].legend}</div>
-    <div class="key1u {keys["k"].css}">{keys["k"].legend}</div>
-    <div class="key1u {keys["l"].css}">{keys["l"].legend}</div>
-    <div class="key1u {keys[";"].css}">{keys[";"].legend}</div>
+    <Key press={keys["a"].press} legend={keys["a"].legend} />
+    <Key press={keys["s"].press} legend={keys["s"].legend} />
+    <Key press={keys["d"].press} legend={keys["d"].legend} />
+    <Key press={keys["f"].press} legend={keys["f"].legend} />
+    <Key press={keys["g"].press} legend={keys["g"].legend} />
+    <Key press={keys["h"].press} legend={keys["h"].legend} />
+    <Key press={keys["j"].press} legend={keys["j"].legend} />
+    <Key press={keys["k"].press} legend={keys["k"].legend} />
+    <Key press={keys["l"].press} legend={keys["l"].legend} />
+    <Key press={keys[";"].press} legend={keys[";"].legend} />
   </div >
 
   <div class="row">
-    <div class="key1u {keys["z"].css}">{keys["z"].legend}</div>
-    <div class="key1u {keys["x"].css}">{keys["x"].legend}</div>
-    <div class="key1u {keys["c"].css}">{keys["c"].legend}</div>
-    <div class="key1u {keys["v"].css}">{keys["v"].legend}</div>
-    <div class="key1u {keys["b"].css}">{keys["b"].legend}</div>
-    <div class="key1u {keys["n"].css}">{keys["n"].legend}</div>
-    <div class="key1u {keys["m"].css}">{keys["m"].legend}</div>
-    <div class="key1u {keys[","].css}">{keys[","].legend}</div>
-    <div class="key1u {keys["."].css}">{keys["."].legend}</div>
-    <div class="key1u {keys["/"].css}">{keys["/"].legend}</div>
+    <Key press={keys["z"].press} legend={keys["z"].legend} />
+    <Key press={keys["x"].press} legend={keys["x"].legend} />
+    <Key press={keys["c"].press} legend={keys["c"].legend} />
+    <Key press={keys["v"].press} legend={keys["v"].legend} />
+    <Key press={keys["b"].press} legend={keys["b"].legend} />
+    <Key press={keys["n"].press} legend={keys["n"].legend} />
+    <Key press={keys["m"].press} legend={keys["m"].legend} />
+    <Key press={keys[","].press} legend={keys[","].legend} />
+    <Key press={keys["."].press} legend={keys["."].legend} />
+    <Key press={keys["/"].press} legend={keys["/"].legend} />
   </div >
 
   <div class="row">
-    <div class="key1u"></div>
-    <div class="key1u"></div>
-    <div class="key1u"></div>
-    <div class="key4u {keys["[s]"].css}">{keys["[s]"].legend}</div>
-    <div class="key1u"></div>
-    <div class="key1u"></div>
-    <div class="key1u"></div>
+    <Key />
+    <Key />
+    <Key />
+    <Key size="key4u" press={keys["[s]"].press} legend={keys["[s]"].legend} />
+    <Key />
+    <Key />
+    <Key />
   </div>
 </div>
 
