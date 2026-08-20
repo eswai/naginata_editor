@@ -272,7 +272,7 @@
 <main>
 	<h1>薙刀式を可視化する</h1>
 	<textarea bind:value={text} on:keyup={handleType}></textarea>
-	<p class="stream" >
+	<div class="stream" >
 		{#each kanatext as [kana, keys]}
 			<div class='tate'>
 				<div class="kana">{kana}</div>
@@ -281,7 +281,7 @@
 				{/each}
 			</div>
 		{/each}
-	</p>
+	</div>
 	
 	<Keyboard highlight={highlight} />
 
